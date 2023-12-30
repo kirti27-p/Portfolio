@@ -736,7 +736,7 @@ img {
 }
 
 .portfolio__content {
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 3rem 0rem;
 }
 
 .portfolio__img {
@@ -790,6 +790,7 @@ img {
 .swiper-pagination-bullet {
   outline: none;
 }
+
 /*==================== PROJECT IN MIND ====================*/
 .project {
   text-align: center;
