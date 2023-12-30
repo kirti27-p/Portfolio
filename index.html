@@ -557,7 +557,7 @@
         </div>
         </section>
         <!--==================== PORTFOLIO ====================-->
-       <section class="portfolio section" id="portfolio">
+        <section class="portfolio section" id="portfolio">
 
             <h2 class="section__title">Portfolio</h2>
             <span class="section__subtitle">Most recent works</span>
@@ -669,8 +669,10 @@
                         <i class="uil uil-phone-alt contact__icon"></i>
 
                         <div>
+                            <!-- <a href="tel:"> -->
                             <h3 class="contact__title">Call me</h3>
-                            <span class="contatc__subtitle">(+91) 8275213117</span>
+                            <span class="contatct__subtitle">(+91) 8275213117</span>
+                        </a>
                         </div>
                     </div>
 
@@ -679,7 +681,9 @@
 
                         <div>
                             <h3 class="contact__title">E-mail</h3>
-                            <span class="contatc__subtitle">kirtipujari72@gmail.com</span>
+                            <!-- <a href="mailto:"> -->
+                            <span class="contatct__subtitle">kirtipujari72@gmail.com</span>
+                        </a>
                         </div>
                     </div>
 
@@ -688,7 +692,7 @@
 
                         <div>
                             <h3 class="contact__title">Location</h3>
-                            <span class="contatc__subtitle">423,Priti Sangum Apartment,
+                            <span class="contatct__subtitle">423,Priti Sangum Apartment,
                                  Madhali Ali,Wai .tal- wai
                                 SATARA, MAHARASHTRA 415516
                                 India</span>
@@ -696,27 +700,29 @@
                     </div>
                 </div>
 
-                <form action="" class="contact__form grid">
-                    <div class="contact__inputs grid">
+                <form action="" class="contact__form grid" id="ContactForm">
+                    
                         <div class="contact__content">
                             <label for="" class="contact__label">Name</label>
-                            <input type="text" class="contact__input">
+                            <input type="text" class="contact__input" id="firstName" required>
+                            <div id="first-name-err" class="error"></div>
                         </div>
 
                         <div class="contact__content">
                             <label for="" class="contact__label">E-mail</label>
-                            <input type="email" class="contact__input">
+                            <input type="email" class="contact__input" id="emailAddress" required>
+                            <div id="email-err" class="error"></div>
                         </div>
-                    </div>
+                    
 
                     <div class="contact__content">
-                        <label for="" class="contact__label">Subject</label>
+                        <label for="" class="contact__label" required>Subject</label>
                         <input type="text" class="contact__input">
                     </div>
 
                     <div class="contact__content">
                         <label for="" class="contact__label">Description</label>
-                        <textarea name="" id="" cols="0" rows="7" class="contact__input"></textarea>
+                        <textarea name="" id="" cols="0" rows="7" class="contact__input" required></textarea>
                     </div>
 
                     <div>
@@ -780,6 +786,102 @@
 
     <!--==================== MAIN JS ====================-->
     <script src="main.js"></script>
+    
+    <script>
+        document.getElementById("ContactForm").onsubmit=function(e){
+        
+          
+        firstNameValidation();
+        lastNameValidation();
+        emailAddressValidation();
+       
+        if(firstNameValidation()==true && 
+          lastNameValidation()==true && 
+          emailAddressValidation() == true){
+          return true;
+        }else{
+          return false;
+        }
+        }
+        
+        
+        // First Name Validation
+        var firstName= document.getElementById("firstName");
+        
+        var firstNameValidation=function(){
+        
+           firstNameValue=firstName.value.trim(); 
+           validFirstName=/^[A-Za-z]+ [A-Za-z]$/;
+           firstNameErr=document.getElementById('first-name-err');
+        
+           if(firstNameValue=="")
+           {
+            firstNameErr.innerHTML="Name is required";
+        
+           }else if(!validFirstName.test(firstNameValue)){
+             firstNameErr.innerHTML="Name must be only string";
+           }else{
+             firstNameErr.innerHTML="";
+             return true;
+            
+           }
+        }
+        
+        firstName.oninput=function(){
+           
+           firstNameValidation();
+        }
+        
+          
+        
+         // Email Address Validation
+         var emailAddress= document.getElementById("emailAddress");;
+         var emailAddressValidation= function(){
+        
+          emailAddressValue=emailAddress.value.trim(); 
+           validEmailAddress=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+           emailAddressErr=document.getElementById('email-err');
+        
+           if(emailAddressValue=="")
+           {
+            emailAddressErr.innerHTML="Email Address is required";
+        
+           }else if(!validEmailAddress.test(emailAddressValue)){
+             emailAddressErr.innerHTML="Email Address must be in valid formate with @ symbol";
+           }else{
+             emailAddressErr.innerHTML="";
+             return true;
+           }
+        
+         }
+        
+        emailAddress.oninput=function(){
+        
+           emailAddressValidation();
+        }
+        
+        
+        // validation on submit
+        
+        
+        document.getElementById("ContactForm").onsubmit=function(e){
+        
+          
+          firstNameValidation();
+          emailAddressValidation();
+        
+        
+          if(firstNameValidation()==true && 
+            emailAddressValidation() == true ){
+            return true;
+          }else{
+            return false;
+          }
+        }
+        
+        
+        </script>
+
 </body>
 
 </html>
